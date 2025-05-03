@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI + Docker
 
 on:
   push:
@@ -11,18 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run lint (or dummy test)
-      run: |
-        echo "Running lint or test"
-        npm run lint || echo "No linter configured yet"
+      - name: Run tests
+        run: echo "⚠️ Add test script here later or skip if none"
+
+      - name: Build Docker image
+        run: docker build -t devops-node-app .
+
